@@ -29,7 +29,7 @@ def make_table(data):
                      visible_column_map=col_map)
         ],
         [sg.Text("Начальные условия: (x₀, v₀, v₀') = ({:.2f},{:.2f},{:.2f}), h₀ = {:.2E}".format(data[0][0],data[1][0],data[7][0], data[4][0]),
-                 font='Georgia 14', text_color="#ADFF2F")],
+                 font='Georgia 14 bold', text_color="#ADFF2F")],
         [sg.Text("(x, v) – точка численной траектории v(x), вычисленная методом Рунге-Кутта IV с «текущим» шагом,",
             font='Georgia 12')],
         [sg.Text("(x, v2) – точка численной траектории v(x), вычисленная методом Рунге-Кутта IV двойным счетом с половинным шагом,",
@@ -52,9 +52,9 @@ def make_table(data):
 input_frame_layout = [
 
     [
-        sg.Text('u(0):', tooltip="Начальное отклонение груза", font='Georgia 15', text_color="#fff3a3"),
+        sg.Text('u(0):', tooltip="Начальное отклонение груза", font='Georgia 15 bold', text_color="#fff3a3"),
         sg.InputText('10', font='Georgia 15', tooltip="Начальное отклонение груза (см)", size=(3, 1), key='input_y0'),
-        sg.Text("u'(0):", tooltip="Начальная скорость груза", font='Georgia 15', text_color="#fff3a3"),
+        sg.Text("u'(0):", tooltip="Начальная скорость груза", font='Georgia 15 bold', text_color="#fff3a3"),
         sg.InputText('0', tooltip="Начальная скорость груза (см/с)", size=(3, 1), font='Georgia 15', key='input_u20',
                      disabled_readonly_background_color=sg.theme_background_color()),
         sg.Text('0 ≤ X ≤', tooltip="Время", font='Georgia 15', text_color="#fff3a3"),
@@ -64,7 +64,7 @@ input_frame_layout = [
     ],
 
     [
-        sg.Text('Параметр контроля погрешности:', font='Georgia 15'), sg.InputText('10e-4', size=(8, 1), font='Georgia 15',
+        sg.Text('Параметр контроля погрешности (ε):', font='Georgia 15'), sg.InputText('10e-4', size=(8, 1), font='Georgia 15',
                                           disabled_readonly_background_color=sg.theme_background_color(),
                                           key='input_e')
     ],
@@ -97,14 +97,14 @@ input_frame_layout = [
         sg.Text('k:', font='Georgia 15', tooltip="Постоянная жесткость первой пружины"), sg.InputText('0.2', size=(6, 1), font='Georgia 15', key='input_k',
                                                        tooltip="Постоянная жесткость первой пружины (Н/см)",
                                     disabled_readonly_background_color=sg.theme_background_color()),
-        sg.Text('k*:' , font='Georgia 15', tooltip="Нелинейная характеристика второй пружины"), sg.InputText('0.2', size=(6, 1), font='Georgia 15', key='input_k*',
+        sg.Text('k*:' , font='Georgia 15', tooltip="Нелинейная характеристика второй пружины"),sg.InputText('0.2', size=(6, 1), font='Georgia 15', key='input_k*',
                                                          tooltip="Нелинейная характеристика второй пружины (Н/см^3)",
                                     disabled_readonly_background_color=sg.theme_background_color()),
     ],
 ]
 
 
-output_frame_layout = [[sg.Text(text="", size=(43, 5), font='Georgia 15', key='main_out')]]
+output_frame_layout = [[sg.Text(text="", size=(40, 5), font='Georgia 15 bold', key='main_out')]]
 
 layout_main = [
     [
@@ -116,13 +116,13 @@ layout_main = [
     ],
 
     [
-        sg.Button('Выход', size=(6, 2), font='Georgia 15'),
-        sg.Text('', size=(1, 2)),
-        sg.Button(' Условия \nзадачи', size=(7, 2), font='Georgia 15'),
-        sg.Button('Таблица', size=(7, 2), font='Georgia 15', disabled=True),
+        sg.Button('Выход', size=(5, 1), font='Georgia 15'),
+        sg.Text('', size=(1, 1)),
+        sg.Button('Условия задачи', size=(7, 1), font='Georgia 15'),
+        sg.Button('Таблица', size=(7, 1), font='Georgia 15', disabled=True),
         # sg.Button('Clear', size = (6,1), font=('Avenir 15'), disabled = True),
-        sg.Button('Графики', size=(7, 2), font='Georgia 15', disabled=True),
-        sg.Button('Вычислить', size=(9, 2), font='Georgia 15', bind_return_key=True)
+        sg.Button('Графики', size=(7, 1), font='Georgia 15', disabled=True),
+        sg.Button('Вычислить', size=(9, 1), font='Georgia 15', bind_return_key=True)
     ]
 ]
 
@@ -153,8 +153,8 @@ while True:
                 break
         window_table.close()
 
-    if event == ' Условия \nзадачи':
-        window_task = sg.Window(' Условия \nзадачи', show_task())
+    if event == 'Условия задачи':
+        window_task = sg.Window('Условия задачи', show_task())
         while True:
             event_u, values_u = window_task.read()
             if event_u == sg.WIN_CLOSED or event_u == 'Закрыть':
